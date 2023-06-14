@@ -349,10 +349,10 @@ int main() {
     while (1) {
         write(clcd_d,"\nYour balance: %d\n", money,12);
         do {
-            write(clcd_d,"Input your bet (100원 단위): ",12);
+            write(clcd_d,"Input your bet (100): ",12);
             scanf_s("%d", &betAmount);
             if (betAmount % 100 != 0)
-                write(clcd_d,"배팅액은 100원 단위로만 가능합니다.\n",12);
+                write(clcd_d,"only 100won each.\n",12);
         } while (betAmount % 100 != 0);
 
         write(clcd_d,"Choose Rock(1), Scissor(2), Paper(3)  \n\nRock Scissor Paper!\n ",12);
@@ -361,7 +361,7 @@ int main() {
         compChoice = rand() % 3 + 1;
 
         if (userChoice == compChoice) {
-            write(clcd_d,"비겼습니다. 다시 가위바위보 게임을 시작합니다.\n",12);
+            write(clcd_d,"draw! Rock Scissor Paper again.\n",12);
             continue;
         }
         else if ((userChoice == 1 && compChoice == 2) || (userChoice == 2 && compChoice == 3) || (userChoice == 3 && compChoice == 1)) {
@@ -369,7 +369,7 @@ int main() {
             sad();
             write(clcd_d,"Your balance: %d\n", money,12);
 
-            write(clcd_d,"Choose Level (1: 한 자리 수, 2: 두 자리 수, 3: 세 자리 수): ",12);
+            write(clcd_d,"Choose Level (1: one digit, 2: two digits, 3: three digits): ",12);
             scanf_s("%d", &difficulty);
 
             answer = generateMathProblem(difficulty);
@@ -393,7 +393,7 @@ int main() {
             scanf_s("%d", &userChoice);
             if (userChoice == 1)
             {
-                write(clcd_d,"Choose Level (1: 한 자리 수, 2: 두 자리 수, 3: 세 자리 수): ",12);
+                write(clcd_d,"Choose Level (1: one digit, 2: two digits, 3: three digits): ",12);
                 scanf_s("%d", &difficulty);
 
                 answer = generateMathProblem(difficulty);
@@ -401,12 +401,12 @@ int main() {
                 scanf_s("%d", &userAnswer);
 
                 if (userAnswer == answer) {
-                    write(clcd_d,"Correct. 배팅 금액을 두배로 얻습니다.\n",12);
+                    write(clcd_d,"Correct. gain twice of bet.\n",12);
                     smile();
                     money += betAmount*2;
                 }
                 else {
-                    write(clcd_d,"틀렸습니다. 배팅 금액을 잃습니다.\n",12);
+                    write(clcd_d,"Wrong. lose bet.\n",12);
                     sad();
                     money -= betAmount*2;
                 }
